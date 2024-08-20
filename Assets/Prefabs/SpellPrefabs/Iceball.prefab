@@ -133,6 +133,7 @@ MonoBehaviour:
   damage: 5
   speed: 10
   lifeSpan: 5
+  speedChangeMultiplier: 0.5
 --- !u!58 &6122312388072641467
 CircleCollider2D:
   m_ObjectHideFlags: 0

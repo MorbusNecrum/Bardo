@@ -15,6 +15,7 @@ public class Iceball : MonoBehaviour, ISpell, IDirectionalSpell
     [SerializeField] private int damage;
     [SerializeField] private int speed;
     [SerializeField] private float lifeSpan;
+    [SerializeField] private float speedChangeMultiplier;
     private float lifeTime = 0;
 
 
@@ -40,6 +41,10 @@ public class Iceball : MonoBehaviour, ISpell, IDirectionalSpell
         if (collision.gameObject.GetComponent<IDamageable>() != null)
         {
             collision.gameObject.GetComponent<IDamageable>().GetDamage(damage);
+        }
+        if (collision.gameObject.GetComponent<IChangeableSpeed>() != null)
+        {
+            collision.gameObject.GetComponent<IChangeableSpeed>().ChangeSpeed(speedChangeMultiplier);
         }
 
         Destroy(gameObject);

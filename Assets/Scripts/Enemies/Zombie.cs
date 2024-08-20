@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : Enemy
+public class Zombie : Enemy, IChangeableSpeed
 {
     [SerializeField] private int slamDamage;
     [SerializeField] private float slamPushBackSpeed;
     [SerializeField] private float speed;
+    private float speedChangeTimer;
     private Vector2 direction;
 
     private SpriteRenderer spriteRenderer;
@@ -23,6 +24,7 @@ public class Zombie : Enemy
     {
         DirectionToPlayer();
         Move();
+        CheckEffects();
     }
     private void Die()
     {
@@ -68,5 +70,28 @@ public class Zombie : Enemy
                 collision.gameObject.GetComponent<IExternalForceReciever>().AddExternalForce(direction * slamPushBackSpeed);
             }
         }
+    }
+
+    private void CheckEffects()
+    {
+        if(speedChangeTimer > 0)
+        {
+            speedChangeTimer -= Time.deltaTime;
+            if(speedChangeTimer <= 0)
+            {
+                speedChangeTimer = 0;
+                ChangeSpeed(1f);
+            }
+        }
+    }
+
+    public void ChangeSpeed(float multiplier)
+    {
+        speed = speed * multiplier;
+    }
+    public void ChangeSpeed(float multiplier, float duration)
+    {
+        speed = speed * multiplier;
+        speedChangeTimer = duration;
     }
 }

@@ -13,6 +13,8 @@ public class Trumpet : MonoBehaviour, IInstrument
     public Dictionary<string, List<string>> SpellComboMap => spellComboMap;
     public List<string> SpellList => spellList;
 
+    private float spellSiezeModifier = 1;
+
     private void Awake()
     {
         foreach (var spell in spells)
@@ -34,6 +36,7 @@ public class Trumpet : MonoBehaviour, IInstrument
                 GameObject spell = Instantiate(prefab);
                 spell.transform.position = transform.position;
                 spell.transform.rotation = transform.rotation;
+                spell.transform.localScale = Vector3.one * spellSiezeModifier;
                 return true;
             }
             //Si es SelfCasteable
@@ -49,4 +52,10 @@ public class Trumpet : MonoBehaviour, IInstrument
             return false;
         }
     }
+
+    public void ChangeSpellSiezeModifier(float multiplier)
+    {
+        spellSiezeModifier = multiplier;
+    }
+
 }

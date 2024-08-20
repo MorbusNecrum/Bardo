@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    private IInstrument instrument;
     private float siezeChangeTimer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        instrument = GetComponentInChildren<IInstrument>();
         GetComponent<LifeController>().OnDeath.AddListener(Die);
     }
 
@@ -27,6 +29,7 @@ public class Character : MonoBehaviour
             {
                 siezeChangeTimer = 0;
                 ChangeSieze(1);
+                instrument.ChangeSpellSiezeModifier(1);
             }
         }
     }
@@ -34,10 +37,12 @@ public class Character : MonoBehaviour
     public void ChangeSieze(float siezeMultiplier)
     {
         transform.localScale = Vector3.one * siezeMultiplier;
+        instrument.ChangeSpellSiezeModifier(siezeMultiplier);
     }
     public void ChangeSieze(float siezeMultiplier, float duration)
     {
         transform.localScale = Vector3.one * siezeMultiplier;
+        instrument.ChangeSpellSiezeModifier(siezeMultiplier);
         siezeChangeTimer = duration;
     }
 
