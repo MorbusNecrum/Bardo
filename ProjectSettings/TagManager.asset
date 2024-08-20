@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Enemies
+  - PlayerSpells
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Traps
     uniqueID: 1371934873
+    locked: 0
+  - name: Bullets
+    uniqueID: 3536747091
     locked: 0
   - name: Player
     uniqueID: 1420598873
