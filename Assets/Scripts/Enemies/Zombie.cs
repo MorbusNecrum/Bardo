@@ -7,10 +7,13 @@ public class Zombie : Enemy, IChangeableSpeed
     [SerializeField] private int slamDamage;
     [SerializeField] private float slamPushBackSpeed;
     [SerializeField] private float speed;
+    [SerializeField] private float chaseDistance;
     private float speedChangeTimer;
     private Vector2 direction;
+    private float playerDistance = 100;
 
     private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,11 @@ public class Zombie : Enemy, IChangeableSpeed
     void Update()
     {
         DirectionToPlayer();
-        Move();
+        if (playerDistance < chaseDistance)
+        {
+            Move();
+        }
+
         CheckEffects();
     }
     private void Die()
@@ -36,6 +43,7 @@ public class Zombie : Enemy, IChangeableSpeed
         if (player != null)
         {
             direction = player.transform.position - transform.position;
+            playerDistance = direction.magnitude;
             direction.Normalize();
             if (direction.x < 0) //va para la izq
             {

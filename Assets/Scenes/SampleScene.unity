@@ -1689,12 +1689,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.019039366, y: 0.10471652, z: -9.519684}
+  m_LocalScale: {x: 0.9519684, y: 0.9519684, z: 0.9519684}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 5453900390873876227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
@@ -3095,7 +3095,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6411862096739479044, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 519420032}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8862241007839553897, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
       insertIndex: 5
@@ -3124,6 +3127,11 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &5453900390873876227 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6411862096739479044, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
+  m_PrefabInstance: {fileID: 5453900390873876214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7825346021336205433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3274,7 +3282,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 738271732}
   - {fileID: 5453900390873876214}

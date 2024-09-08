@@ -103,6 +103,7 @@ MonoBehaviour:
   slamDamage: 5
   slamPushBackSpeed: 20
   speed: 3
+  chaseDistance: 10
 --- !u!114 &7459669586763509598
 MonoBehaviour:
   m_ObjectHideFlags: 0
