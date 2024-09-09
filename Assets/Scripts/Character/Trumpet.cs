@@ -6,7 +6,7 @@ public class Trumpet : MonoBehaviour, IInstrument
 {
     [SerializeField] private List<GameObject> spells = new List<GameObject>(); //Insert on Editor
     private Dictionary<string, List<string>> spellComboMap = new Dictionary<string, List<string>>();
-    private Dictionary<string, GameObject> spellPrefabMap = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> spellPrefabDictonary = new Dictionary<string, GameObject>();
     private List<string> spellList = new List<string>();
 
     //PROPIEDADES
@@ -20,14 +20,14 @@ public class Trumpet : MonoBehaviour, IInstrument
         foreach (var spell in spells)
         {
             spellComboMap.Add(spell.GetComponent<ISpell>().Id, spell.GetComponent<ISpell>().Combo); //Nombre del Spell >> Lista de Combo
-            spellPrefabMap.Add(spell.GetComponent<ISpell>().Id, spell); //Nombre del Spell >> Prefab
+            spellPrefabDictonary.Add(spell.GetComponent<ISpell>().Id, spell); //Nombre del Spell >> Prefab
             spellList.Add(spell.GetComponent<ISpell>().Id); //Lista ordenada con un i que devuelve un Id de cada spell
         }
     }
 
     public bool Cast(string spellId)
     {
-        spellPrefabMap.TryGetValue(spellId, out GameObject prefab);
+        spellPrefabDictonary.TryGetValue(spellId, out GameObject prefab);
         if (prefab != null)
         {
             //Si es direccional
