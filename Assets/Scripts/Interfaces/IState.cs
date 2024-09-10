@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public interface IState 
 {
@@ -8,4 +9,6 @@ public interface IState
     void UpdateState();
     void Enter();
     void Exit();
+
+    UnityEvent<string> OnChangeStateTo { get; }
 }

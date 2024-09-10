@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7052362643237706967}
   - component: {fileID: 6212061081760563491}
   - component: {fileID: 1379942798169643454}
+  - component: {fileID: 2616770607488354888}
+  - component: {fileID: 3743281306247327781}
   m_Layer: 6
   m_Name: Zombie
   m_TagString: Untagged
@@ -102,8 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slamDamage: 5
-  slamPushBackSpeed: 20
-  speed: 3
+  slamPushBackForce: 10
+  speed: 3.5
   chaseDistance: 10
 --- !u!114 &7459669586763509598
 MonoBehaviour:
@@ -201,3 +203,27 @@ MonoBehaviour:
   - {fileID: 243837844529201150, guid: f37d877fb059f814eb2ff5ee2cfd791b, type: 3}
   - {fileID: 694060784232904448, guid: 22de6f56eccba094293d74995181f500, type: 3}
   startingState: Idle
+--- !u!114 &2616770607488354888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338240066382021071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433760f5851dcd74fafe69d861920ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3743281306247327781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338240066382021071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c684f8e9a60194aad0159742376df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

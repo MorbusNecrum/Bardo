@@ -1778,6 +1778,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &673433075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4385782878823151895, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
+  m_PrefabInstance: {fileID: 5453900390873876214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &738271730
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,7 +3098,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7917915833764222793, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6411862096739479044, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
@@ -3101,8 +3107,11 @@ PrefabInstance:
       addedObject: {fileID: 519420032}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8862241007839553897, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
-      insertIndex: 5
+      insertIndex: 4
       addedObject: {fileID: 5453900390873876221}
+    - targetCorrespondingSourceObject: {fileID: 8862241007839553897, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5453900390873876228}
   m_SourcePrefab: {fileID: 100100000, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
 --- !u!1 &5453900390873876215 stripped
 GameObject:
@@ -3132,6 +3141,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6411862096739479044, guid: 64bb6fd9be8ee1c49b8ff4261167c374, type: 3}
   m_PrefabInstance: {fileID: 5453900390873876214}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5453900390873876228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453900390873876215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f38c95f59f7d8a449216cd78cca440b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 7
+  velPower: 5
+  friction: 0.2
+  forceLimit: 20
+  instrument: {fileID: 673433075}
 --- !u!1001 &7825346021336205433
 PrefabInstance:
   m_ObjectHideFlags: 0

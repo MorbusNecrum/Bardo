@@ -5,7 +5,7 @@ using UnityEngine;
 public class Zombie : Enemy, IChangeableSpeed
 {
     [SerializeField] private int slamDamage;
-    [SerializeField] private float slamPushBackSpeed;
+    [SerializeField] private float slamPushBackForce;
     [SerializeField] private float speed;
     [SerializeField] private float chaseDistance;
     private float speedChangeTimer;
@@ -14,24 +14,37 @@ public class Zombie : Enemy, IChangeableSpeed
 
     private SpriteRenderer spriteRenderer;
 
+    public float PlayerDistance => playerDistance;
+    public float ChaseDistance => chaseDistance;
+
+    public Vector2 Direction => direction;
+    public float Speed => speed;
+
+    private StateMachine stateMachine;
+
     // Start is called before the first frame update
     void Start()
     {
         StartAbstract();
         lifeController.OnDeath.AddListener(Die);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        stateMachine = GetComponent<StateMachine>();
     }
 
     // Update is called once per frame
     void Update()
     {
         DirectionToPlayer();
-        if (playerDistance < chaseDistance)
-        {
-            Move();
-        }
-
+        stateMachine.UpdateState();
         CheckEffects();
+        
+    }
+    private void FixedUpdate()
+    {
+        //if (playerDistance < chaseDistance)
+        //{
+        //    Move();
+        //}
     }
     private void Die()
     {
@@ -64,7 +77,7 @@ public class Zombie : Enemy, IChangeableSpeed
 
     private void Move()
     {
-        rb.velocity = direction * speed;
+        rb.AddForce(direction.normalized * speed);
 
     }
 
@@ -75,7 +88,7 @@ public class Zombie : Enemy, IChangeableSpeed
             if(collision.gameObject.tag == ("Player"))
             {
                 collision.gameObject.GetComponent<IDamageable>().GetDamage(slamDamage);
-                collision.gameObject.GetComponent<IExternalForceReciever>().AddExternalForce(direction * slamPushBackSpeed);
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * slamPushBackForce, ForceMode2D.Impulse);
             }
         }
     }
