@@ -10,6 +10,7 @@ public class StateMachine : MonoBehaviour
     public IState CurrentState => currentState;
 
     [SerializeField] private List<GameObject> statesPrefabs = new List<GameObject>();// Prefabs con el script del state
+    
     private Dictionary<string, IState> stateDictonary = new Dictionary<string, IState>(); // Id >> IState
     private List<IState> InstancedStates = new List<IState>();
 
@@ -35,6 +36,7 @@ public class StateMachine : MonoBehaviour
         //Settea el primer state
         stateDictonary.TryGetValue(startingState, out  IState stateToChange);
         currentState = stateToChange;
+        currentState.Enter();
     }
 
     public void UpdateState()
