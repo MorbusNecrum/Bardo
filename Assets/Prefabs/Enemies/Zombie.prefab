@@ -199,9 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c7ed669d93e7c48856c4cbb396beb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statesPrefabs:
-  - {fileID: 243837844529201150, guid: f37d877fb059f814eb2ff5ee2cfd791b, type: 3}
-  - {fileID: 694060784232904448, guid: 22de6f56eccba094293d74995181f500, type: 3}
   startingState: Idle
 --- !u!114 &2616770607488354888
 MonoBehaviour:
