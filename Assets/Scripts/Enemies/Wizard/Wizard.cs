@@ -2,24 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : Enemy, IChangeableSpeed
+public class Wizard : Enemy
 {
-    [SerializeField] private int slamDamage;
-    [SerializeField] private float slamPushBackForce;
     [SerializeField] private float speed;
     [SerializeField] private float chaseDistance;
+    [SerializeField] private float castingDistance;
     private float speedChangeTimer;
     private Vector2 direction;
     private float playerDistance = 100;
-
-    private SpriteRenderer spriteRenderer;
-
     public float PlayerDistance => playerDistance;
     public float ChaseDistance => chaseDistance;
+    public float CastingDistance => castingDistance;
 
     public Vector2 Direction => direction;
     public float Speed => speed;
 
+    private SpriteRenderer spriteRenderer;
     private StateMachine stateMachine;
 
     // Start is called before the first frame update
@@ -37,11 +35,6 @@ public class Zombie : Enemy, IChangeableSpeed
         DirectionToPlayer();
         stateMachine.UpdateState();
         CheckEffects();
-        
-    }
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 
     private void DirectionToPlayer()
@@ -68,31 +61,18 @@ public class Zombie : Enemy, IChangeableSpeed
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision != null)
-        {
-            if(collision.gameObject.tag == ("Player"))
-            {
-                collision.gameObject.GetComponent<IDamageable>().GetDamage(slamDamage);
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * slamPushBackForce, ForceMode2D.Impulse);
-            }
-        }
-    }
-
     private void CheckEffects()
     {
-        if(speedChangeTimer > 0)
+        if (speedChangeTimer > 0)
         {
             speedChangeTimer -= Time.deltaTime;
-            if(speedChangeTimer <= 0)
+            if (speedChangeTimer <= 0)
             {
                 speedChangeTimer = 0;
                 ChangeSpeed(1f);
             }
         }
     }
-
     public void ChangeSpeed(float multiplier)
     {
         speed = speed * multiplier;
@@ -101,5 +81,9 @@ public class Zombie : Enemy, IChangeableSpeed
     {
         speed = speed * multiplier;
         speedChangeTimer = duration;
+    }
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }

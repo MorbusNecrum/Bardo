@@ -18,20 +18,6 @@ public class StateMachine : MonoBehaviour
 
     [SerializeField] string startingState;
 
-
-    //private void Awake()
-    //{
-    //    //Carga el dictionary
-    //    foreach(var prefab in statesPrefabs)
-    //    {
-    //        if (prefab != null)
-    //        {
-    //            stateDictonary.Add(prefab.GetComponent<IState>().Id, prefab.GetComponent<IState>()); // Id >> IState
-    //        }
-    //    }
-
-
-    //}
     private void Awake()
     {
         //Carga el dictionary
