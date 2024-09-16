@@ -13,8 +13,6 @@ public class WizardCastState : MonoBehaviour, IState
 
     //EDITABLES
     [SerializeField] private GameObject spellPrefab;
-    [SerializeField] private float spellCD;
-    [SerializeField] private float spellCDTimer;
 
     //EXTRAS
     private Wizard wizard;
@@ -42,12 +40,20 @@ public class WizardCastState : MonoBehaviour, IState
             onChangeStateTo.Invoke("Chase");
         }
 
-        CastSpell();
-
+        //Si ya puede castear
+        if (wizard.CastCDTimer == 0)
+        {
+            CastSpell();//castea
+            wizard.CastCDTimer = wizard.CastCD;//le pone el CoolDown, el wizard script se encarga del timer.
+        }
     }
 
     private void CastSpell()
     {
-        Instantiate(spellPrefab, transform.position, Quaternion.identity);
+        GameObject spell = Instantiate(spellPrefab);
+        spell.transform.position = transform.position;
+        //Calcula la direccion del spell y lo settea
+        float angle = Mathf.Atan2(wizard.Direction.y, wizard.Direction.x) * Mathf.Rad2Deg;
+        spell.transform.eulerAngles = (new Vector3(0, 0, angle));
     }
 }

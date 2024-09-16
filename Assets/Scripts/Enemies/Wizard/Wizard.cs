@@ -7,12 +7,26 @@ public class Wizard : Enemy
     [SerializeField] private float speed;
     [SerializeField] private float chaseDistance;
     [SerializeField] private float castingDistance;
+    [SerializeField] private float castCD;
+    private float castCDTimer = 0;
+
     private float speedChangeTimer;
     private Vector2 direction;
     private float playerDistance = 100;
     public float PlayerDistance => playerDistance;
     public float ChaseDistance => chaseDistance;
     public float CastingDistance => castingDistance;
+    public float CastCD
+    {
+        get { return castCD; }
+        set { castCD = value; }
+    }
+
+    public float CastCDTimer
+    {
+        get { return castCDTimer; }
+        set { castCDTimer = value; }
+    }
 
     public Vector2 Direction => direction;
     public float Speed => speed;
@@ -34,7 +48,7 @@ public class Wizard : Enemy
     {
         DirectionToPlayer();
         stateMachine.UpdateState();
-        CheckEffects();
+        CheckTimers();
     }
 
     private void DirectionToPlayer()
@@ -61,8 +75,9 @@ public class Wizard : Enemy
         }
     }
 
-    private void CheckEffects()
+    private void CheckTimers()
     {
+        //DURACION DEL CAMMBIO DE VELOCIDAD, lo devuelve a la vel normal
         if (speedChangeTimer > 0)
         {
             speedChangeTimer -= Time.deltaTime;
@@ -70,6 +85,17 @@ public class Wizard : Enemy
             {
                 speedChangeTimer = 0;
                 ChangeSpeed(1f);
+            }
+        }
+
+        //COOLDOWN DEL CASTEO, lo pone en 0
+        if(castCDTimer > 0)
+        {
+            
+            castCDTimer -= Time.deltaTime;
+            if(castCDTimer <= 0)
+            {
+                castCDTimer = 0;
             }
         }
     }

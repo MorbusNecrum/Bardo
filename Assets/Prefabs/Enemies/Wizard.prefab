@@ -140,7 +140,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -185,8 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  chaseDistance: 6
-  castingDistance: 2
+  chaseDistance: 9
+  castingDistance: 7
+  castCD: 3
 --- !u!114 &3889241065855846096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,5 +238,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 1592312020981814989, guid: 373ae09470700204c9319b3b1fafa9d6, type: 3}
-  spellCD: 0
-  spellCDTimer: 0
