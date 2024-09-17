@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private GameObject zombie;
+    [SerializeField] private AbstractFactory abstractGeometryFactory;
 
     void Awake()
     {
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnZombie();
+        abstractGeometryFactory.CreateObjectInAbstractFactory("Square");
+        abstractGeometryFactory.CreateObjectInAbstractFactory("Circle");
     }
 
     // Update is called once per frame
