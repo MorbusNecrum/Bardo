@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : Enemy, IChangeableSpeed
+public class Zombie : Enemy, IChangeableSpeed , IFactoryzable
 {
+    private string prefabId = "Zombie";
+
     [SerializeField] private int slamDamage;
     [SerializeField] private float slamPushBackForce;
     [SerializeField] private float speed;
@@ -19,6 +21,8 @@ public class Zombie : Enemy, IChangeableSpeed
 
     public Vector2 Direction => direction;
     public float Speed => speed;
+
+    public string PrefabID => prefabId;
 
     private StateMachine stateMachine;
 

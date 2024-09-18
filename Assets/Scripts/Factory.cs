@@ -7,6 +7,8 @@ public class Factory : MonoBehaviour
     [SerializeField] private List<GameObject> prefabs = new List<GameObject>();
     private Dictionary<string , GameObject> prefabDictonary = new Dictionary<string , GameObject>();
 
+    public List<GameObject> Prefabs => prefabs;
+
     private void Awake()
     {
         foreach (var prefab in prefabs)

@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private GameObject zombie;
-    [SerializeField] private AbstractFactory abstractGeometryFactory;
+    [SerializeField] private Factory enemyFactory;
+    [SerializeField] private GameObject enemySpawnPoint;
+    private int enemiesKilled = 0;
+    private int enemiesAlive;
 
     void Awake()
     {
@@ -25,20 +27,41 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnZombie();
-        abstractGeometryFactory.CreateObjectInAbstractFactory("Square");
-        abstractGeometryFactory.CreateObjectInAbstractFactory("Circle");
+        SpawnEnemies(enemiesKilled +1);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SpawnEnemies(int amount)
     {
-        
+        enemiesAlive = amount;
+        for (int i = 0; i < amount; i++)
+        {
+            int num = Random.Range(0, enemyFactory.Prefabs.Count);
+            GameObject enemy;
+            switch (num)
+            {
+                case 0:
+                    enemy = enemyFactory.CreateGameObject("Zombie");
+                    enemy.transform.position = enemySpawnPoint.transform.position;
+                    enemy.GetComponent<LifeController>().OnDeath.AddListener(EnemyKilled);
+                    break;
+
+                case 1:
+                    enemy = enemyFactory.CreateGameObject("Wizard");
+                    enemy.transform.position = enemySpawnPoint.transform.position;
+                    enemy.GetComponent<LifeController>().OnDeath.AddListener(EnemyKilled);
+                    break;
+            }
+        }
     }
 
-    private void SpawnZombie()
+    private void EnemyKilled()
     {
-        GameObject z = Instantiate(zombie);
-        z.GetComponent<LifeController>().OnDeath.AddListener(SpawnZombie);
+        enemiesKilled++;
+        enemiesAlive--;
+        if(enemiesAlive == 0)
+        {
+            SpawnEnemies(enemiesKilled+1);
+        }
+
     }
 }

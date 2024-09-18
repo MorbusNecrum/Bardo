@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wizard : Enemy
+public class Wizard : Enemy , IFactoryzable
 {
+    private string prefabId = "Wizard";
+
     [SerializeField] private float speed;
     [SerializeField] private float chaseDistance;
     [SerializeField] private float castingDistance;
@@ -30,6 +32,8 @@ public class Wizard : Enemy
 
     public Vector2 Direction => direction;
     public float Speed => speed;
+
+    public string PrefabID => prefabId;
 
     private SpriteRenderer spriteRenderer;
     private StateMachine stateMachine;
