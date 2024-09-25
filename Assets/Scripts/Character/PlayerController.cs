@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
+    Animator animator;
     [SerializeField] GameObject instrument;
 
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); //Guarda la ref del Rigidbody por codigo
         spriteRenderer = GetComponent<SpriteRenderer>();//Guarda la ref del SpriteRenderer por codigo
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -65,6 +66,15 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = false;
             instrument.GetComponent<SpriteRenderer>().flipY = false;
         }
+        //CAMBIA LA ANIMACION
+        if (direction == Vector2.zero)
+        {
+            animator.SetBool("IsWalking", false);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", true);
+        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         instrument.transform.eulerAngles = (new Vector3(0, 0, angle));
@@ -73,7 +83,6 @@ public class PlayerController : MonoBehaviour
         {
             instrument.transform.eulerAngles = (new Vector3(0, 0, 180));
         }
-
     }
     private void Move()
     {
