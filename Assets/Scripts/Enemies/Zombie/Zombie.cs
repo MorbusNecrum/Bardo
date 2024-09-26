@@ -24,6 +24,9 @@ public class Zombie : Enemy, IChangeableSpeed , IFactoryzable
 
     public string PrefabID => prefabId;
 
+    public int SlamDamage => slamDamage;
+    public float SlamPushBackForce => slamPushBackForce;
+
     private StateMachine stateMachine;
 
     // Start is called before the first frame update
@@ -55,32 +58,10 @@ public class Zombie : Enemy, IChangeableSpeed , IFactoryzable
             direction = player.transform.position - transform.position;
             playerDistance = direction.magnitude;
             direction.Normalize();
-            if (direction.x < 0) //va para la izq
-            {
-                spriteRenderer.flipX = false;
-
-            }
-            else if (direction.x > 0) //va para la derecha
-            {
-                spriteRenderer.flipX = true;
-
-            }
         }
         else
         {
             direction = Vector2.zero;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision != null)
-        {
-            if(collision.gameObject.tag == ("Player"))
-            {
-                collision.gameObject.GetComponent<IDamageable>().GetDamage(slamDamage);
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * slamPushBackForce, ForceMode2D.Impulse);
-            }
         }
     }
 

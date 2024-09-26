@@ -12,9 +12,10 @@ public class ZombieChaseState : MonoBehaviour , IState
     public UnityEvent<string> OnChangeStateTo => onChangeStateTo;
 
     //EXTRAS
-    private Zombie zombie;
+    private Zombie self;
     private bool move = false;
     private Rigidbody2D rb;
+    private Animator animator;
     public void Enter()
     {
         if (rb == null)
@@ -22,24 +23,28 @@ public class ZombieChaseState : MonoBehaviour , IState
             rb = GetComponent<Rigidbody2D>();
         }
 
-        if (zombie == null)
+        if (self == null)
         {
-            zombie = GetComponent<Zombie>();
+            self = GetComponent<Zombie>();
         }
-
+        if(animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
         Debug.Log("Entered Zombie Chase State");
         move = true;
-
+        animator.SetBool("IsWalking", true);
     }
 
     public void Exit()
     {
         move = false;
+        animator.SetBool("IsWalking", false);
     }
 
     public void UpdateState()
     {
-        if (zombie.PlayerDistance > zombie.ChaseDistance)
+        if (self.PlayerDistance > self.ChaseDistance)
         {
             Exit();
             onChangeStateTo.Invoke("Idle");
@@ -49,7 +54,19 @@ public class ZombieChaseState : MonoBehaviour , IState
     {
         if(move)
         {
-            rb.AddForce(zombie.Direction.normalized * zombie.Speed);
+            //CAMBIO DE ORIENTACION
+            if (self.Direction.x < 0) //va para la izq
+            {
+                transform.rotation = Quaternion.Euler(0, 180f, 0);
+
+            }
+            else if (self.Direction.x > 0) //va para la derecha
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            }
+
+            rb.AddForce(self.Direction.normalized * self.Speed);
         }
     }
 
