@@ -62,16 +62,6 @@ public class Wizard : Enemy , IFactoryzable
             direction = player.transform.position - transform.position;
             playerDistance = direction.magnitude;
             direction.Normalize();
-            if (direction.x < 0) //va para la izq
-            {
-                spriteRenderer.flipX = false;
-
-            }
-            else if (direction.x > 0) //va para la derecha
-            {
-                spriteRenderer.flipX = true;
-
-            }
         }
         else
         {

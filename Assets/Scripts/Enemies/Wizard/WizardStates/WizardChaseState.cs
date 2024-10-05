@@ -13,9 +13,10 @@ public class WizardChaseState : MonoBehaviour, IState
     public UnityEvent<string> OnChangeStateTo => onChangeStateTo;
 
     //EXTRAS
-    private Wizard wizard;
+    private Wizard self;
     private bool move = false;
     private Rigidbody2D rb;
+    private Animator animator;
     public void Enter()
     {
         if (rb == null)
@@ -23,10 +24,15 @@ public class WizardChaseState : MonoBehaviour, IState
             rb = GetComponent<Rigidbody2D>();
         }
 
-        if (wizard == null)
+        if (self == null)
         {
-            wizard = GetComponent<Wizard>();
+            self = GetComponent<Wizard>();
         }
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+        animator.SetBool("IsWalking", true);
 
         Debug.Log("Entered Wizard Chase State");
         move = true;
@@ -40,13 +46,13 @@ public class WizardChaseState : MonoBehaviour, IState
 
     public void UpdateState()
     {
-        if (wizard.PlayerDistance > wizard.ChaseDistance)
+        if (self.PlayerDistance > self.ChaseDistance)
         {
             Exit();
             onChangeStateTo.Invoke("Idle");
         }
 
-        if (wizard.PlayerDistance <= wizard.CastingDistance)
+        if (self.PlayerDistance <= self.CastingDistance)
         {
             Exit();
             onChangeStateTo.Invoke("Cast");
@@ -56,7 +62,19 @@ public class WizardChaseState : MonoBehaviour, IState
     {
         if (move)
         {
-            rb.AddForce(wizard.Direction.normalized * wizard.Speed);
+            //CAMBIO DE ORIENTACION
+            if (self.Direction.x < 0) //va para la izq
+            {
+                transform.rotation = Quaternion.Euler(0, 180f, 0);
+
+            }
+            else if (self.Direction.x > 0) //va para la derecha
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            }
+
+            rb.AddForce(self.Direction.normalized * self.Speed);
         }
     }
 }

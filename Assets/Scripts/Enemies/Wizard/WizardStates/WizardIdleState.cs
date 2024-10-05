@@ -14,6 +14,7 @@ public class WizardIdleState : MonoBehaviour, IState
 
     //EXTRAS
     private Wizard wizard;
+    private Animator animator;
 
     public void Enter()
     {
@@ -22,6 +23,11 @@ public class WizardIdleState : MonoBehaviour, IState
         {
             wizard = GetComponent<Wizard>();
         }
+        if (animator == null )
+        {
+            animator = GetComponent<Animator>();
+        }
+        animator.SetBool("IsWalking", false);
     }
 
     public void Exit()

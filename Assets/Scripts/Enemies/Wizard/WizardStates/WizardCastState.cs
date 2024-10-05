@@ -15,36 +15,43 @@ public class WizardCastState : MonoBehaviour, IState
     [SerializeField] private GameObject spellPrefab;
 
     //EXTRAS
-    private Wizard wizard;
+    private Wizard self;
+    private bool canChangeDirection;
+    private Animator animator;
+
     public void Enter()
     {
-        if (wizard == null)
+        if (self == null)
         {
-            wizard = GetComponent<Wizard>();
+            self = GetComponent<Wizard>();
         }
-
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+        animator.SetBool("IsWalking", false);
         Debug.Log("Entered Wizard Cast State");
-
+        canChangeDirection = true;
     }
 
     public void Exit()
     {
-
+        canChangeDirection = false;
     }
 
     public void UpdateState()
     {
-        if (wizard.PlayerDistance > wizard.CastingDistance)
+        if (self.PlayerDistance > self.CastingDistance)
         {
             Exit();
             onChangeStateTo.Invoke("Chase");
         }
 
         //Si ya puede castear
-        if (wizard.CastCDTimer == 0)
+        if (self.CastCDTimer == 0)
         {
             CastSpell();//castea
-            wizard.CastCDTimer = wizard.CastCD;//le pone el CoolDown, el wizard script se encarga del timer.
+            self.CastCDTimer = self.CastCD;//le pone el CoolDown, el wizard script se encarga del timer.
         }
     }
 
@@ -53,7 +60,24 @@ public class WizardCastState : MonoBehaviour, IState
         GameObject spell = Instantiate(spellPrefab);
         spell.transform.position = transform.position;
         //Calcula la direccion del spell y lo settea
-        float angle = Mathf.Atan2(wizard.Direction.y, wizard.Direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(self.Direction.y, self.Direction.x) * Mathf.Rad2Deg;
         spell.transform.eulerAngles = (new Vector3(0, 0, angle));
+    }
+    private void FixedUpdate()
+    {
+        if (canChangeDirection)
+        {
+            //CAMBIO DE ORIENTACION
+            if (self.Direction.x < 0) //va para la izq
+            {
+                transform.rotation = Quaternion.Euler(0, 180f, 0);
+
+            }
+            else if (self.Direction.x > 0) //va para la derecha
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+        
     }
 }
