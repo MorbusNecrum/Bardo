@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float friction;
     [SerializeField] private float forceLimit; //Lo maximo de fuerza que se puede aplicar en un frame.
     private Vector2 direction;
+    private Vector2 lastDirection;
     private Vector2 targetSpeed;
     
 
     Rigidbody2D rb;
-    SpriteRenderer spriteRenderer;
+    SpriteRenderer instrumentSpriteRenderer;
     Animator animator;
     [SerializeField] GameObject instrument;
 
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); //Guarda la ref del Rigidbody por codigo
-        spriteRenderer = GetComponent<SpriteRenderer>();//Guarda la ref del SpriteRenderer por codigo
+        instrumentSpriteRenderer = instrument.GetComponent<SpriteRenderer>();//Guarda la ref del SpriteRenderer por codigo
         animator = GetComponent<Animator>();
     }
 
@@ -55,18 +56,24 @@ public class PlayerController : MonoBehaviour
         direction.y = Input.GetAxis("Vertical");
 
         direction.Normalize();
+        if(direction != Vector2.zero)//Si no se movio
+        {
+            lastDirection = direction;
+        }
 
-        if (direction.x < 0) //va para la izq
-        {
-            spriteRenderer.flipX = true;
-            instrument.GetComponent<SpriteRenderer>().flipY = true;
-        }
-        else if (direction.x > 0) //va para la derecha
-        {
-            spriteRenderer.flipX = false;
-            instrument.GetComponent<SpriteRenderer>().flipY = false;
-        }
-        //CAMBIA LA ANIMACION
+        //if (direction.x < 0) //va para la izq
+        //{
+        //    spriteRenderer.flipX = true;
+        //    instrument.GetComponent<SpriteRenderer>().flipY = true;
+        //}
+        //else if (direction.x > 0) //va para la derecha
+        //{
+        //    spriteRenderer.flipX = false;
+        //    instrument.GetComponent<SpriteRenderer>().flipY = false;
+        //}
+        
+
+        //SET DE PARAMETROS DE ANIMACION
         if (direction == Vector2.zero)
         {
             animator.SetBool("IsWalking", false);
@@ -75,13 +82,27 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsWalking", true);
         }
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
+        animator.SetFloat("LastMoveX", lastDirection.x);
+        animator.SetFloat("LastMoveY", lastDirection.y);
 
+        //Direcciona la trompeta
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         instrument.transform.eulerAngles = (new Vector3(0, 0, angle));
 
-        if (direction.magnitude == 0 && spriteRenderer.flipX) //Si esta quieto mirando para la izquierda
+        if (direction.magnitude == 0) //Si esta quieto pone la trompe en dir a la lastDir
         {
-            instrument.transform.eulerAngles = (new Vector3(0, 0, 180));
+            angle = Mathf.Atan2(lastDirection.y, lastDirection.x) * Mathf.Rad2Deg;
+            instrument.transform.eulerAngles = (new Vector3(0, 0, angle));
+        }
+        if(angle > 90 ||  angle < -90)//Flippea para que no quede dada vuelta si esta en el 2ndo o 3er cuadrante
+        {
+            instrumentSpriteRenderer.flipY = true;  
+        }
+        else
+        {
+            instrumentSpriteRenderer.flipY = false;
         }
     }
     private void Move()
