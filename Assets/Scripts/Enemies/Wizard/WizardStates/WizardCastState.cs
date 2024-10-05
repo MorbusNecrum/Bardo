@@ -18,6 +18,7 @@ public class WizardCastState : MonoBehaviour, IState
     private Wizard self;
     private bool canChangeDirection;
     private Animator animator;
+    private Transform spellSpawnPoint;
 
     public void Enter()
     {
@@ -28,6 +29,10 @@ public class WizardCastState : MonoBehaviour, IState
         if (animator == null)
         {
             animator = GetComponent<Animator>();
+        }
+        if(spellSpawnPoint == null)
+        {
+            spellSpawnPoint = transform.GetChild(0);
         }
         animator.SetBool("IsWalking", false);
         Debug.Log("Entered Wizard Cast State");
@@ -50,7 +55,8 @@ public class WizardCastState : MonoBehaviour, IState
         //Si ya puede castear
         if (self.CastCDTimer == 0)
         {
-            CastSpell();//castea
+            //Triggerea la Anim
+            animator.SetTrigger("Cast");// LO CASTEA POR UN EVENTO DE LA ANIMACION QUE LLAMA A CASTSPELL()
             self.CastCDTimer = self.CastCD;//le pone el CoolDown, el wizard script se encarga del timer.
         }
     }
@@ -58,7 +64,7 @@ public class WizardCastState : MonoBehaviour, IState
     private void CastSpell()
     {
         GameObject spell = Instantiate(spellPrefab);
-        spell.transform.position = transform.position;
+        spell.transform.position = spellSpawnPoint.position;
         //Calcula la direccion del spell y lo settea
         float angle = Mathf.Atan2(self.Direction.y, self.Direction.x) * Mathf.Rad2Deg;
         spell.transform.eulerAngles = (new Vector3(0, 0, angle));
