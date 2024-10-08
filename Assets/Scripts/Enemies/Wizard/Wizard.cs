@@ -2,26 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wizard : Enemy , IFactoryzable
+public class Wizard : Enemy , IChangeableSpeed, IFactoryzable
 {
-    private string prefabId = "Wizard";
+    [SerializeField] WizardFlyweight wizardData;
 
-    [SerializeField] private float speed;
-    [SerializeField] private float chaseDistance;
-    [SerializeField] private float castingDistance;
-    [SerializeField] private float castCD;
+    private float currentSpeed;
+
     private float castCDTimer = 0;
-
     private float speedChangeTimer;
     private Vector2 direction;
     private float playerDistance = 100;
     public float PlayerDistance => playerDistance;
-    public float ChaseDistance => chaseDistance;
-    public float CastingDistance => castingDistance;
+    public float ChaseDistance => wizardData.chaseDistance;
+    public float CastingDistance => wizardData.castingDistance;
     public float CastCD
     {
-        get { return castCD; }
-        set { castCD = value; }
+        get { return wizardData.castCD; }
     }
 
     public float CastCDTimer
@@ -31,11 +27,10 @@ public class Wizard : Enemy , IFactoryzable
     }
 
     public Vector2 Direction => direction;
-    public float Speed => speed;
+    public float CurrentSpeed => currentSpeed;
 
-    public string PrefabID => prefabId;
+    public string PrefabID => wizardData.prefabId;
 
-    private SpriteRenderer spriteRenderer;
     private StateMachine stateMachine;
 
     // Start is called before the first frame update
@@ -43,8 +38,9 @@ public class Wizard : Enemy , IFactoryzable
     {
         StartAbstract();
         lifeController.OnDeath.AddListener(Die);
-        spriteRenderer = GetComponent<SpriteRenderer>();
         stateMachine = GetComponent<StateMachine>();
+        currentSpeed = wizardData.speed;
+        
     }
 
     // Update is called once per frame
@@ -95,11 +91,11 @@ public class Wizard : Enemy , IFactoryzable
     }
     public void ChangeSpeed(float multiplier)
     {
-        speed = speed * multiplier;
+        currentSpeed = wizardData.speed * multiplier;
     }
     public void ChangeSpeed(float multiplier, float duration)
     {
-        speed = speed * multiplier;
+        currentSpeed = wizardData.speed * multiplier;
         speedChangeTimer = duration;
     }
     private void Die()

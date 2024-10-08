@@ -4,28 +4,22 @@ using UnityEngine;
 
 public class Zombie : Enemy, IChangeableSpeed , IFactoryzable
 {
-    private string prefabId = "Zombie";
-
-    [SerializeField] private int slamDamage;
-    [SerializeField] private float slamPushBackForce;
-    [SerializeField] private float speed;
-    [SerializeField] private float chaseDistance;
+    [SerializeField] ZombieFlyweight zombieData;
+    private float currentSpeed;
     private float speedChangeTimer;
     private Vector2 direction;
     private float playerDistance = 100;
 
-    private SpriteRenderer spriteRenderer;
 
     public float PlayerDistance => playerDistance;
-    public float ChaseDistance => chaseDistance;
+    public float ChaseDistance => zombieData.chaseDistance;
 
     public Vector2 Direction => direction;
-    public float Speed => speed;
+    public float CurrentSpeed => currentSpeed;
+    public string PrefabID => zombieData.prefabId;
 
-    public string PrefabID => prefabId;
-
-    public int SlamDamage => slamDamage;
-    public float SlamPushBackForce => slamPushBackForce;
+    public int SlamDamage => zombieData.basicAttackDamage;
+    public float SlamPushBackForce => zombieData.slamPushBackForce;
 
     private StateMachine stateMachine;
 
@@ -34,8 +28,8 @@ public class Zombie : Enemy, IChangeableSpeed , IFactoryzable
     {
         StartAbstract();
         lifeController.OnDeath.AddListener(Die);
-        spriteRenderer = GetComponent<SpriteRenderer>();
         stateMachine = GetComponent<StateMachine>();
+        currentSpeed = zombieData.speed;
     }
 
     // Update is called once per frame
@@ -80,11 +74,11 @@ public class Zombie : Enemy, IChangeableSpeed , IFactoryzable
 
     public void ChangeSpeed(float multiplier)
     {
-        speed = speed * multiplier;
+        currentSpeed = zombieData.speed * multiplier;
     }
     public void ChangeSpeed(float multiplier, float duration)
     {
-        speed = speed * multiplier;
+        currentSpeed = zombieData.speed * multiplier;
         speedChangeTimer = duration;
     }
 }

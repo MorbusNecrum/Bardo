@@ -74,7 +74,7 @@ public class WizardChaseState : MonoBehaviour, IState
 
             }
 
-            rb.AddForce(self.Direction.normalized * self.Speed);
+            rb.AddForce(self.Direction.normalized * self.CurrentSpeed);
         }
     }
 }

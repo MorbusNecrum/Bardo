@@ -66,7 +66,7 @@ public class ZombieChaseState : MonoBehaviour , IState
 
             }
 
-            rb.AddForce(self.Direction.normalized * self.Speed);
+            rb.AddForce(self.Direction.normalized * self.CurrentSpeed);
         }
     }
 

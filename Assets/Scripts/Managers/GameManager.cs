@@ -6,11 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private Factory enemyFactory;
-    [SerializeField] private GameObject enemySpawnPoint;
-    private int enemiesKilled = 0;
-    private int enemiesAlive;
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,45 +18,35 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        SpawnEnemies(enemiesKilled +1);
-    }
-
-    private void SpawnEnemies(int amount)
-    {
-        enemiesAlive = amount;
-        for (int i = 0; i < amount; i++)
-        {
-            int num = Random.Range(0, enemyFactory.Prefabs.Count);
-            GameObject enemy;
-            switch (num)
-            {
-                case 0:
-                    enemy = enemyFactory.CreateGameObject("Zombie");
-                    enemy.transform.position = enemySpawnPoint.transform.position;
-                    enemy.GetComponent<LifeController>().OnDeath.AddListener(EnemyKilled);
-                    break;
-
-                case 1:
-                    enemy = enemyFactory.CreateGameObject("Wizard");
-                    enemy.transform.position = enemySpawnPoint.transform.position;
-                    enemy.GetComponent<LifeController>().OnDeath.AddListener(EnemyKilled);
-                    break;
-            }
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {            QuitGame();
         }
     }
-
-    private void EnemyKilled()
+    public void QuitGame()
     {
-        enemiesKilled++;
-        enemiesAlive--;
-        if(enemiesAlive == 0)
-        {
-            SpawnEnemies(enemiesKilled+1);
-        }
+        // save any game data here
+#if UNITY_EDITOR
+        // Application.Quit() does not work in the editor so
+        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+    public void FreezeTime()
+    {
+        Time.timeScale = 0f;
+    }
 
+    public void UnfreezeTime()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void ChangeTimeSpeed(float time)
+    {
+        Time.timeScale = time;
     }
 }
