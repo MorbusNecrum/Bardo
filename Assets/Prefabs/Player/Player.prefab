@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 289670469693484159}
   - component: {fileID: 7162756077155280621}
   - component: {fileID: 3395622179112428013}
+  - component: {fileID: 2331821743069660061}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -168,6 +169,9 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   hurtSoundId: Hurt
+  OnGetDamage:
+    m_PersistentCalls:
+      m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -221,6 +225,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2331821743069660061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862241007839553897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e64f0a23bf42e40b48fd6ad2b6cbfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: ce4578de9ac2ae54eb906e8e1746501d, type: 2}
+  duration: 0.1
 --- !u!1001 &5432425505775938498
 PrefabInstance:
   m_ObjectHideFlags: 0

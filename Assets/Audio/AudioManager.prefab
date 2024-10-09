@@ -48,14 +48,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameSounds:
-  - clip: {fileID: 8300000, guid: 8bf226fe8c164a64db0431f144462d5b, type: 3}
+  - clip: {fileID: 8300000, guid: 7bbebaad640e535428454b43fe6be856, type: 3}
     soundID: C
-  - clip: {fileID: 8300000, guid: 99f7ef9eeb6e64141a1066674584c89e, type: 3}
+  - clip: {fileID: 8300000, guid: d8103596430a1c3408d3cb2fa9d7fcba, type: 3}
     soundID: Eb
-  - clip: {fileID: 8300000, guid: c7957a5313d061e46b56a70e12fd28de, type: 3}
+  - clip: {fileID: 8300000, guid: 2296201be23b79349a69f56e658f8cab, type: 3}
     soundID: F
-  - clip: {fileID: 8300000, guid: cdd25204f06108a44894bc58f7646fae, type: 3}
+  - clip: {fileID: 8300000, guid: 98c7d0d970658bb4dbc98bcc6fc2b8b8, type: 3}
     soundID: Bb
+  - clip: {fileID: 8300000, guid: 5e2a4eee2e8a3164f85fc70cc86e4289, type: 3}
+    soundID: Hurt
+  - clip: {fileID: 8300000, guid: 65806bc40e532de4f809672f6b258f7d, type: 3}
+    soundID: EnemyHurt
   SoundAudioSource: {fileID: 1921304005376768842}
   _sfxSource: {fileID: 4882266944786825521}
   _bgmSource: {fileID: 4532113542819882903}

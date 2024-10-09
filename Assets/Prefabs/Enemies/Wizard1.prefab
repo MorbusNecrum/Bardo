@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 8615967815918560652}
   - component: {fileID: 505621898318116865}
   - component: {fileID: -2757438260721841349}
+  - component: {fileID: 3850599471232810108}
   m_Layer: 6
   m_Name: Wizard1
   m_TagString: Untagged
@@ -201,7 +202,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
-  hurtSoundId: 
+  hurtSoundId: EnemyHurt
+  OnGetDamage:
+    m_PersistentCalls:
+      m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -289,3 +293,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3850599471232810108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663205868412836526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e64f0a23bf42e40b48fd6ad2b6cbfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: ce4578de9ac2ae54eb906e8e1746501d, type: 2}
+  duration: 0.1

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2616770607488354888}
   - component: {fileID: 3743281306247327781}
   - component: {fileID: 7138356842461179850}
+  - component: {fileID: -405378625187513866}
   m_Layer: 6
   m_Name: Zombie1
   m_TagString: Untagged
@@ -118,9 +119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c038e27f24f5b8459c028978f5caa2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   currentHealth: 0
-  hurtSoundId: 
+  hurtSoundId: EnemyHurt
+  OnLifeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMaxHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -244,6 +251,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-405378625187513866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338240066382021071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e64f0a23bf42e40b48fd6ad2b6cbfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: ce4578de9ac2ae54eb906e8e1746501d, type: 2}
+  duration: 0.1
 --- !u!1 &6842072678027938940
 GameObject:
   m_ObjectHideFlags: 0

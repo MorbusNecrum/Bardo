@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2221529889497426774}
   - component: {fileID: 5136874906313065259}
   - component: {fileID: 8335255165230539217}
+  - component: {fileID: 5868075710961037117}
   m_Layer: 6
   m_Name: Slime1
   m_TagString: Untagged
@@ -140,7 +141,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
-  hurtSoundId: 
+  hurtSoundId: EnemyHurt
+  OnGetDamage:
+    m_PersistentCalls:
+      m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -243,3 +247,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5868075710961037117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5273574367587848873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e64f0a23bf42e40b48fd6ad2b6cbfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: ce4578de9ac2ae54eb906e8e1746501d, type: 2}
+  duration: 0.1
