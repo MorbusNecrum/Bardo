@@ -8,11 +8,15 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Slider slider;
     private LifeController playerLifeController;
 
-    private void Start()
+    private void Awake()
     {
         playerLifeController = GameObject.Find("Player").GetComponent<LifeController>();
         playerLifeController.OnLifeChanged.AddListener(SetHealth);
         playerLifeController.OnMaxHealthChanged.AddListener(SetMaxHealth);
+        
+    }
+    private void Start()
+    {
     }
     public void SetHealth(int health)
     {
