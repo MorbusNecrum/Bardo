@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float friction;
     [SerializeField] private float forceLimit; //Lo maximo de fuerza que se puede aplicar en un frame.
     private Vector2 direction;
-    private Vector2 lastDirection;
+    private Vector2 lastDirection = new Vector2(1, 0);
     private Vector2 targetSpeed;
-    
+
+    private List<IInteractable> closeInteractables = new List<IInteractable>();
+    public List<IInteractable> CloseInteractables => closeInteractables;
 
     Rigidbody2D rb;
     SpriteRenderer instrumentSpriteRenderer;
@@ -60,18 +62,6 @@ public class PlayerController : MonoBehaviour
         {
             lastDirection = direction;
         }
-
-        //if (direction.x < 0) //va para la izq
-        //{
-        //    spriteRenderer.flipX = true;
-        //    instrument.GetComponent<SpriteRenderer>().flipY = true;
-        //}
-        //else if (direction.x > 0) //va para la derecha
-        //{
-        //    spriteRenderer.flipX = false;
-        //    instrument.GetComponent<SpriteRenderer>().flipY = false;
-        //}
-        
 
         //SET DE PARAMETROS DE ANIMACION
         if (direction == Vector2.zero)
@@ -126,4 +116,14 @@ public class PlayerController : MonoBehaviour
         //Agrega la fuerza al RigidBody
         rb.AddForce(movement);
     }
+    public void EnterInteractableZone(IInteractable interactable)
+    {
+        closeInteractables.Add(interactable);
+    }
+
+    public void LeftInteractableZone(IInteractable interactable)
+    {
+        closeInteractables.Remove(interactable);
+    }
+
 }

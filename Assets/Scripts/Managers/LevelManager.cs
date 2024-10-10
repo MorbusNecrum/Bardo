@@ -1,58 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-
-    [SerializeField] private Factory enemyFactory;
-    [SerializeField] private GameObject enemySpawnPoint;
-    private int enemiesKilled = 0;
+    [SerializeField] private string levelID;
     private int enemiesAlive;
+    public string LevelID => levelID;
+    public UnityEvent OnKilledAllEnemies = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemies(enemiesKilled + 1);
-    }
+        //Le pasa su referencia al singleton del GameManager
+        GameManager.Instance.ReferenceLevelManager(this);
+        //Hace que el dialogueManager retome sus referencias
+        DialogueManager.Instance.GetReferences();
 
-    private void SpawnEnemies(int amount)
-    {
-        enemiesAlive = amount;
-        for (int i = 0; i < amount; i++)
+        List<GameObject> levelEnemies = new List<GameObject>();
+        //Busca a todos los enemigos y los guarda en una lista temporal
+        levelEnemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+
+        foreach (GameObject enemy in levelEnemies) 
         {
-            int num = Random.Range(0, enemyFactory.Prefabs.Count);
-            GameObject enemy;
-            switch (num)
-            {
-                case 0:
-                    enemy = enemyFactory.CreateGameObject("Zombie1");
-                    enemy.transform.position = enemySpawnPoint.transform.position;
-                    enemy.GetComponent<LifeController>().OnDeath.AddListener(EnemyKilled);
-                    break;
-
-                case 1:
-                    enemy = enemyFactory.CreateGameObject("Wizard1");
-                    enemy.transform.position = enemySpawnPoint.transform.position;
-                    enemy.GetComponent<LifeController>().OnDeath.AddListener(EnemyKilled);
-                    break;
-                case 2:
-                    enemy = enemyFactory.CreateGameObject("Slime1");
-                    enemy.transform.position = enemySpawnPoint.transform.position;
-                    enemy.GetComponent<LifeController>().OnDeath.AddListener(EnemyKilled);
-                    break;
-            }
+            //Se suscribe a su OnDeath y lo suma a enemigos vivos
+            enemy.GetComponent<LifeController>().OnDeath.AddListener(EnemyDied);
+            enemiesAlive++;
         }
-    }
 
-    private void EnemyKilled()
+    }
+    private void EnemyDied()
     {
-        enemiesKilled++;
         enemiesAlive--;
-        if (enemiesAlive == 0)
+        if (enemiesAlive <= 0)
         {
-            SpawnEnemies(enemiesKilled + 1);
+            OnKilledAllEnemies.Invoke();
         }
-
     }
 }

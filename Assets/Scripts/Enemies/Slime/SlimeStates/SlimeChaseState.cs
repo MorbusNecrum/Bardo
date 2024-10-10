@@ -62,6 +62,7 @@ public class SlimeChaseState : MonoBehaviour, IState
     }
     private void Jump()
     {
+        AudioManager.Instance.PlayAudioClip("SlimeJump");
         rb.AddForce(self.Direction * self.JumpForce, ForceMode2D.Impulse);
     }
     private void FixedUpdate()

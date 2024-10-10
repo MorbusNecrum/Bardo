@@ -15,6 +15,6 @@ MonoBehaviour:
   prefabId: Wizard1
   basicAttackDamage: 20
   speed: 3
-  chaseDistance: 15
-  castingDistance: 11
+  chaseDistance: 13
+  castingDistance: 8
   castCD: 3

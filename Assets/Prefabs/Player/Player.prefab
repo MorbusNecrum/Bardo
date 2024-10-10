@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7162756077155280621}
   - component: {fileID: 3395622179112428013}
   - component: {fileID: 2331821743069660061}
+  - component: {fileID: 4423904872134493901}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1420598873
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 52e9e94eafc118b4fbcc2fc3d327c0a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -169,7 +170,10 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   hurtSoundId: Hurt
-  OnGetDamage:
+  OnLifeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMaxHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
@@ -239,6 +243,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: ce4578de9ac2ae54eb906e8e1746501d, type: 2}
   duration: 0.1
+--- !u!81 &4423904872134493901
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862241007839553897}
+  m_Enabled: 1
 --- !u!1001 &5432425505775938498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,7 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 1046184211, guid: e1eed18dca112fd47a97ade330196239, type: 3}
     - target: {fileID: 5995744714123127173, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
       propertyPath: m_SortingLayer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5995744714123127173, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
       propertyPath: m_SortingLayerID

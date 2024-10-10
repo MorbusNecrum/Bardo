@@ -63,6 +63,7 @@ public class WizardCastState : MonoBehaviour, IState
 
     private void CastSpell()
     {
+        AudioManager.Instance.PlayAudioClip("WizardCast");
         GameObject spell = Instantiate(spellPrefab);
         spell.transform.position = spellSpawnPoint.position;
         //Calcula la direccion del spell y lo settea

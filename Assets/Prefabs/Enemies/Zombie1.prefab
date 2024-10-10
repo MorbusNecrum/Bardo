@@ -18,10 +18,11 @@ GameObject:
   - component: {fileID: 2616770607488354888}
   - component: {fileID: 3743281306247327781}
   - component: {fileID: 7138356842461179850}
+  - component: {fileID: 2575552706374960330}
   - component: {fileID: -405378625187513866}
   m_Layer: 6
   m_Name: Zombie1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1714853993
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -621094216, guid: 6987bc52a81e30b4b82f94c2f843bd2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
-  hurtSoundId: EnemyHurt
+  hurtSoundId: ZombieHurt
   OnLifeChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -251,6 +252,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2575552706374960330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338240066382021071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a3bb5e1c9c1b042a807b87dc998853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundId: ZombieChase
+  soundCDTimer: 2
 --- !u!114 &-405378625187513866
 MonoBehaviour:
   m_ObjectHideFlags: 0

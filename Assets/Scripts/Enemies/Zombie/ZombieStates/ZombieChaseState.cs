@@ -16,6 +16,7 @@ public class ZombieChaseState : MonoBehaviour , IState
     private bool move = false;
     private Rigidbody2D rb;
     private Animator animator;
+    private NoticeSound noticeSoundComponent;
     public void Enter()
     {
         if (rb == null)
@@ -31,9 +32,14 @@ public class ZombieChaseState : MonoBehaviour , IState
         {
             animator = GetComponent<Animator>();
         }
+        if(noticeSoundComponent == null)
+        {
+            noticeSoundComponent = GetComponent<NoticeSound>();
+        }
         Debug.Log("Entered Zombie Chase State");
         move = true;
         animator.SetBool("IsWalking", true);
+        noticeSoundComponent.PlayNoticeSound();
     }
 
     public void Exit()

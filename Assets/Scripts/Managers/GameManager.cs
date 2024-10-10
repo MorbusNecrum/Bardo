@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    private LevelManager currentLevel;
 
     void Awake()
     {
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if(Input.GetKeyUp(KeyCode.Escape))
-        {            QuitGame();
+        {            
+            QuitGame();
         }
     }
     public void QuitGame()
@@ -48,5 +50,16 @@ public class GameManager : MonoBehaviour
     public void ChangeTimeSpeed(float time)
     {
         Time.timeScale = time;
+    }
+
+    public void ReferenceLevelManager(LevelManager level)
+    {
+        currentLevel = level;
+        currentLevel.OnKilledAllEnemies.AddListener(LevelFinished);
+    }
+
+    private void LevelFinished()
+    {
+        SceneChanger.Instance.ChangeScene("MainMenu");
     }
 }

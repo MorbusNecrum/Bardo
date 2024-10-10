@@ -17,6 +17,7 @@ public class WizardChaseState : MonoBehaviour, IState
     private bool move = false;
     private Rigidbody2D rb;
     private Animator animator;
+    private NoticeSound noticeSoundComponent;
     public void Enter()
     {
         if (rb == null)
@@ -32,6 +33,12 @@ public class WizardChaseState : MonoBehaviour, IState
         {
             animator = GetComponent<Animator>();
         }
+        if(noticeSoundComponent == null)
+        {
+            noticeSoundComponent = GetComponent<NoticeSound>();
+        }
+        noticeSoundComponent.PlayNoticeSound();
+
         animator.SetBool("IsWalking", true);
 
         Debug.Log("Entered Wizard Chase State");
