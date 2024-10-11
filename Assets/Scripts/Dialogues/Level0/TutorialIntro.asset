@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff566a23facf54046b29a11a9c5e82f0, type: 3}
   m_Name: TutorialIntro
   m_EditorClassIdentifier: 
-  speakerName: 
+  speakerName: TUTORIAL
   senteces:
-  - Hello There!
+  - 'Hello There! Welcome to BARD IT.
+
+    [Press Continue]'
+  - You are Melidor, a brave Bard who clears dungeons for a living.
+  - Eliminate ALL the ENEMIES to sell the dungeon to a new tenant.
+  - "Your main weapon is MUSIC! \n[Use ARROW KEYS to play notes]"
+  - 'A note by itself is nothing, but a melody is powerfull!
+
+    [To cast FIREBALL
+    press <-- <--]'
+  - You can discover more melodies that cast spells as you go. GOOD LUCK Melidor!

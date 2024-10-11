@@ -15,8 +15,8 @@ TagManager:
   - Enemies
   - PlayerSpells
   - EnemySpells
-  - 
-  - 
+  - TerrainCollision
+  - WalkInFrontTerrain
   - 
   - 
   - 
