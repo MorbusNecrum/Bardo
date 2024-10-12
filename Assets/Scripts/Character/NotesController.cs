@@ -15,7 +15,7 @@ public class NotesController : MonoBehaviour
     private float basicAttackCDTimer = 0;
 
     private IInstrument instrument;
-    private Factory notesFactory;
+    private AbstractFactory notesFactory;
     [SerializeField] private GameObject noteSpawnPoint;
 
 
@@ -23,7 +23,7 @@ public class NotesController : MonoBehaviour
     void Start()
     {
         instrument = GetComponent<IInstrument>();
-        notesFactory = GameObject.Find("NotesFACTORY").GetComponent<Factory>(); //Referencia al factory de notas
+        notesFactory = GameObject.Find("NotesAbstractFACTORY").GetComponent<AbstractFactory>(); //Referencia al factory de notas
     }
 
     // Update is called once per frame
@@ -125,7 +125,7 @@ public class NotesController : MonoBehaviour
         lastTimePlayedTimer = comboStopTimeBuffer;
         Debug.Log($"Played note: {note}");
         AudioManager.Instance.PlayAudioClip(note);
-        GameObject visualNote = notesFactory.CreateGameObject(note);
+        GameObject visualNote = notesFactory.CreateObjectInAbstractFactory(note);
         visualNote.transform.position = noteSpawnPoint.transform.position;
         SpellsUpdate();
     }

@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     private int enemiesAlive;
     public string LevelID => levelID;
     public UnityEvent OnKilledAllEnemies = new UnityEvent();
+    private AbstractFactory notesAbstractFactory;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,20 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.ReferenceLevelManager(this);
         //Hace que el dialogueManager retome sus referencias
         DialogueManager.Instance.GetReferences();
+
+        notesAbstractFactory = GameObject.Find("NotesAbstractFACTORY").GetComponent<AbstractFactory>();
+        
+
+        //SETTEA QUE ABSTRACT FACTORY DE NOTAS USAR SEGUN EL CONTROL EN USO DEL GAMEMANAGER
+        switch(GameManager.Instance.ControllerInUse)
+        {
+            case ControllerType.PS4:
+                    notesAbstractFactory.ChangeFactoryToUse(GameObject.Find("PS4NotesFACTORY").GetComponent<Factory>());
+                break;
+            case ControllerType.Xbox:
+                    notesAbstractFactory.ChangeFactoryToUse(GameObject.Find("XboxNotesFACTORY").GetComponent<Factory>());
+                break;
+        }
 
         List<GameObject> levelEnemies = new List<GameObject>();
         //Busca a todos los enemigos y los guarda en una lista temporal

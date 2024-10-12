@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     private LevelManager currentLevel;
+    private ControllerType controllerInUse = ControllerType.PS4;
+
+    public ControllerType ControllerInUse => controllerInUse;
 
     void Awake()
     {
@@ -66,6 +67,12 @@ public class GameManager : MonoBehaviour
     private void LevelFinished()
     {
         SceneChanger.Instance.ChangeScene("MainMenu");
+    }
+
+    public void SetControllerType(ControllerType controllerType)
+    {
+        controllerInUse = controllerType;
+        Debug.Log(controllerInUse);
     }
 
 }
