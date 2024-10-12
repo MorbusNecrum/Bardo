@@ -58,8 +58,14 @@ public class GameManager : MonoBehaviour
         currentLevel.OnKilledAllEnemies.AddListener(LevelFinished);
     }
 
+    private void PlayerDied()
+    {
+        SceneChanger.Instance.ChangeScene(currentLevel.LevelID);
+    }
+
     private void LevelFinished()
     {
         SceneChanger.Instance.ChangeScene("MainMenu");
     }
+
 }
