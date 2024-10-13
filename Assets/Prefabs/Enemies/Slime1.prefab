@@ -141,7 +141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
-  hurtSoundId: SlimeHurt
+  hurtSoundId: EnemyHurt
+  diedSoundId: SlimeDied
   OnLifeChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -13,6 +13,7 @@ public class LifeController : MonoBehaviour, IDamageable
     public int CurrentHealth => currentHealth;
 
     [SerializeField] private string hurtSoundId = null;
+    [SerializeField] private string diedSoundId = null;
 
     private FlashEffect flashEffect;
 
@@ -55,6 +56,10 @@ public class LifeController : MonoBehaviour, IDamageable
                 {
                     currentHealth = 0;
                     isAlive = false;
+                    if (diedSoundId != null)//Sonido de muerte
+                    {
+                        AudioManager.Instance.PlayAudioClip(diedSoundId);
+                    }
                     OnDeath.Invoke();
                 }
             }

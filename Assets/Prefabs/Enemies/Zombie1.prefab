@@ -190,7 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
-  hurtSoundId: ZombieHurt
+  hurtSoundId: EnemyHurt
+  diedSoundId: ZombieDied
   OnLifeChanged:
     m_PersistentCalls:
       m_Calls: []

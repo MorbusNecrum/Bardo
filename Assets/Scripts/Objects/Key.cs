@@ -11,6 +11,7 @@ public class Key : MonoBehaviour, IFactoryzable
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.Instance.PlayAudioClip("PickUp");
             GameObject.Find("DoorsMANAGER").GetComponent<DoorsManager>().OpenDoor(indexOfDoorThatItOpens);
             Destroy(gameObject);
         }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff566a23facf54046b29a11a9c5e82f0, type: 3}
   m_Name: TutorialIntro
   m_EditorClassIdentifier: 
-  speakerName: TUTORIAL
+  speakerName: Tutorial
   senteces:
   - 'Hello There! Welcome to BARD IT.
 

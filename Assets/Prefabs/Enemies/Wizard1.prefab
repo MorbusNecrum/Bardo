@@ -117,7 +117,7 @@ SpriteRenderer:
   m_SortingLayerID: 1714853993
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0d87f7821f6d37c4d98c291e2170cc9a, type: 3}
+  m_Sprite: {fileID: -1509316055, guid: 1c98f7f5076b6034f854f18b5dbc9586, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -160,8 +160,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03081274, y: -0.081234574}
-  m_Size: {x: 1.0616255, y: 1.7787311}
+  m_Offset: {x: 0.03081274, y: 0.00001168251}
+  m_Size: {x: 1.0616255, y: 1.7412329}
   m_Direction: 0
 --- !u!50 &6745867981387465375
 Rigidbody2D:
@@ -204,7 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
-  hurtSoundId: WizardHurt
+  hurtSoundId: EnemyHurt
+  diedSoundId: WizardDied
   OnLifeChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -390,6 +391,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.030269146, y: -0.08215779}
-  m_Size: {x: 0.94105625, y: 1.0259446}
+  m_Offset: {x: -0.07610035, y: 0.06861457}
+  m_Size: {x: 0.84939384, y: 0.88272566}
   m_Direction: 0
