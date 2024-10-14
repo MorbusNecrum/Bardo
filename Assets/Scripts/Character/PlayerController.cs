@@ -59,9 +59,11 @@ public class PlayerController : MonoBehaviour
         }
 
         //Settea la direccion normalizada
-        direction.x = Input.GetAxis("Horizontal");
-        direction.y = Input.GetAxis("Vertical");
-
+        if (!GameManager.Instance.IsGamePaused && !DialogueManager.Instance.IsInDialogue)
+        {
+            direction.x = Input.GetAxis("Horizontal");
+            direction.y = Input.GetAxis("Vertical");
+        }
         direction.Normalize();
         if(direction != Vector2.zero)//Si no se movio
         {
