@@ -36,6 +36,28 @@ public class LifeController : MonoBehaviour, IDamageable
         maxHealth = value;
         OnMaxHealthChanged.Invoke(maxHealth);
     }
+    public void Revive(int health)
+    {
+        currentHealth = health;
+        isAlive = true;
+        OnLifeChanged?.Invoke(currentHealth);
+        if (flashEffect != null)//Cancela Animacion de Flash
+        {
+            flashEffect.CancelFlash();
+        }
+        gameObject.SetActive(true);
+    }
+    public void ReviveAtMaxHealth()
+    {
+        currentHealth = maxHealth;
+        isAlive = true;
+        OnLifeChanged?.Invoke(currentHealth);
+        if (flashEffect != null)//Cancela Animacion de Flash
+        {
+            flashEffect.CancelFlash();
+        }
+        gameObject.SetActive(true);
+    }
     public void GetDamage(int damage)
     {
         if (IsAlive)
@@ -60,6 +82,7 @@ public class LifeController : MonoBehaviour, IDamageable
                     {
                         AudioManager.Instance.PlayAudioClip(diedSoundId);
                     }
+                    gameObject.SetActive(false);
                     OnDeath.Invoke();
                 }
             }

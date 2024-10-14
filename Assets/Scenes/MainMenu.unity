@@ -2435,7 +2435,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1683956384}
         m_TargetAssemblyTypeName: OnClickButton, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: OnClickChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

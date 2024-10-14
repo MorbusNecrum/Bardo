@@ -5,8 +5,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private LevelManager currentLevel;
     private ControllerType controllerInUse = ControllerType.PS4;
+    private bool isGamePaused = false;
 
     public ControllerType ControllerInUse => controllerInUse;
+    public bool IsGamePaused => isGamePaused;
 
     void Awake()
     {
@@ -20,13 +22,25 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-    private void Update()
+
+    public void PauseToggle()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {            
-            QuitGame();
+        if (!DialogueManager.Instance.IsInDialogue)//Si NO esta en dialogo, ya q cuenta como pausa
+        {
+            if (!isGamePaused)//Si no esta pausado lo pausa
+            {//PAUSA
+                GameObject.Find("PausePanelParent").transform.GetChild(0).gameObject.SetActive(true);
+                FreezeTime();
+            }
+            if (isGamePaused)//Si esta pausado lo despausa
+            {//PLAY
+                GameObject.Find("PausePanelParent").transform.GetChild(0).gameObject.SetActive(false);
+                UnfreezeTime();
+            }
+            isGamePaused = !isGamePaused;
         }
     }
+
     public void QuitGame()
     {
         // save any game data here
@@ -59,16 +73,20 @@ public class GameManager : MonoBehaviour
         currentLevel.OnKilledAllEnemies.AddListener(LevelFinished);
     }
 
-    private void PlayerDied()
-    {
-        SceneChanger.Instance.ChangeScene(currentLevel.LevelID);
-    }
-
     private void LevelFinished()
     {
         SceneChanger.Instance.ChangeScene("MainMenu");
     }
 
+    public void RestartLevel()
+    {
+        SceneChanger.Instance.ChangeScene(currentLevel.LevelID);
+    }
+
+    public void RestartFromLastCheckpoint()
+    {
+        currentLevel.Respawn();
+    }
     public void SetControllerType(ControllerType controllerType)
     {
         controllerInUse = controllerType;

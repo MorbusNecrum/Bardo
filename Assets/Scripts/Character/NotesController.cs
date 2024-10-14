@@ -29,7 +29,7 @@ public class NotesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!DialogueManager.Instance.IsInDialogue)
+        if (!DialogueManager.Instance.IsInDialogue && !GameManager.Instance.IsGamePaused)
         {
             NotesUpdate();
         }

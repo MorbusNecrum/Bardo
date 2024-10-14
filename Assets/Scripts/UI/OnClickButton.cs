@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OnClickButton : MonoBehaviour
 {
-    public void OnClick(string sceneName)
+    public void OnClickChangeScene(string sceneName)
     {
         SceneChanger.Instance.ChangeScene(sceneName);
     }

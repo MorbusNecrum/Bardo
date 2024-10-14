@@ -38,5 +38,14 @@ public class FlashEffect : MonoBehaviour
         spriteRenderer.material = originalMaterial;
         flashRoutine = null;//termino
     }
-
+    public void CancelFlash()
+    {
+        if (flashRoutine != null)
+        {
+            //Si ya se está ejecutando, lo cancela y arranca de nuevo
+            StopCoroutine(flashRoutine);
+            spriteRenderer.material = originalMaterial;
+            flashRoutine = null;//termino
+        }
+    }
 }

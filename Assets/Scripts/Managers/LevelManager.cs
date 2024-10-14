@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +11,9 @@ public class LevelManager : MonoBehaviour
     public string LevelID => levelID;
     public UnityEvent OnKilledAllEnemies = new UnityEvent();
     private AbstractFactory notesAbstractFactory;
+    private GameObject player;
+    private CheckpointController checkpointController;
+    [SerializeField] private CheckpointSO lastCheckpoint = null;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +48,27 @@ public class LevelManager : MonoBehaviour
             enemiesAlive++;
         }
 
+        player = GameObject.Find("Player");
+        player.GetComponent<LifeController>().OnDeath.AddListener(Respawn);
+        checkpointController = GetComponent<CheckpointController>();
+    }
+
+    public void ReachedCheckpoint()
+    {
+        lastCheckpoint = checkpointController.CreateCheckpoint();
+    }
+
+    public void Respawn()
+    {
+
+        if(lastCheckpoint == null)
+        {
+            SceneChanger.Instance.ChangeScene(LevelID);
+        }
+        else
+        {
+            checkpointController.RestoreFromCheckpoint(lastCheckpoint);
+        }
     }
     private void EnemyDied()
     {

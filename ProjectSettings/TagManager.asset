@@ -17,8 +17,8 @@ TagManager:
   - EnemySpells
   - TerrainCollision
   - WalkInFrontTerrain
-  - 
-  - 
+  - Objects
+  - SteppableObjects
   - 
   - 
   - 

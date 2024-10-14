@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     void Start()
     {
         instrument = GetComponentInChildren<IInstrument>();
-        GetComponent<LifeController>().OnDeath.AddListener(Die);
+        //GetComponent<LifeController>().OnDeath.AddListener(Die);
     }
 
     // Update is called once per frame
@@ -72,11 +72,6 @@ public class Character : MonoBehaviour
             instrument.ChangeSpellSiezeModifier(siezeMultiplier);
             siezeChangeTimer = duration;
             hasToRevertSieze = false;
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 
     public void EnterZone(IZone zoneEntered)

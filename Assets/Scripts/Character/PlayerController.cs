@@ -53,6 +53,11 @@ public class PlayerController : MonoBehaviour
 
     private void InputUpdate()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.Instance.PauseToggle();
+        }
+
         //Settea la direccion normalizada
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
