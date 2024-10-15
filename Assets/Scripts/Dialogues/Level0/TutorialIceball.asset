@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff566a23facf54046b29a11a9c5e82f0, type: 3}
+  m_Name: TutorialIceball
+  m_EditorClassIdentifier: 
+  speakerName: Tutorial
+  senteces:
+  - You found a music sheet with a new spell, ICEBALL!
+  - ICEBALL does less damage, but it cover more area and SLOWS down enemies!
+  - "[To cast ICEBALL pres: \u2191,\u2193,\u2190]"

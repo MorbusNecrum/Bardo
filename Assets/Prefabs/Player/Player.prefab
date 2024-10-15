@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5312208643243942415}
   m_Layer: 3
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 7168
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -269,6 +269,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   hurtSoundId: Hurt
+  diedSoundId: 
   OnLifeChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -428,11 +429,15 @@ PrefabInstance:
       objectReference: {fileID: 1046184211, guid: e1eed18dca112fd47a97ade330196239, type: 3}
     - target: {fileID: 5995744714123127173, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
       propertyPath: m_SortingLayer
-      value: 9
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995744714123127173, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5995744714123127173, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
       propertyPath: m_SortingLayerID
-      value: -231780923
+      value: 1420598873
       objectReference: {fileID: 0}
     - target: {fileID: 8628532387312407253, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
       propertyPath: m_Name
@@ -448,13 +453,28 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2364684885016867080, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5512209435715111036}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8628532387312407253, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 4791642339400077467}
   m_SourcePrefab: {fileID: 100100000, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
 --- !u!1 &4385782878823151895 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8628532387312407253, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}
   m_PrefabInstance: {fileID: 5432425505775938498}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4791642339400077467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385782878823151895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6057e0db75f58a24a8e2caf9b4d7ffe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7760500853527648970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2364684885016867080, guid: 60593cefd6100a6478d4527f58661c7f, type: 3}

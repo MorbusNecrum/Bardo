@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -75,7 +76,13 @@ public class GameManager : MonoBehaviour
 
     private void LevelFinished()
     {
-        SceneChanger.Instance.ChangeScene("MainMenu");
+        GameObject.Find("WinPanelParent").transform.GetChild(0).gameObject.SetActive(true);
+        FreezeTime();
+    }
+
+    public void NextLevel()
+    {
+        SceneChanger.Instance.ChangeScene(currentLevel.NextLevelID);
     }
 
     public void RestartLevel()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LifeController : MonoBehaviour, IDamageable
+public class LifeController : MonoBehaviour, IDamageable, IHealeable
 {
     
     [SerializeField] private int maxHealth;
@@ -89,4 +89,20 @@ public class LifeController : MonoBehaviour, IDamageable
         }
     }
 
+    public void GetHeal(int amount)
+    {
+        if (IsAlive)
+        {
+            if (amount > 0)
+            {
+                currentHealth += amount;
+
+                if (currentHealth > maxHealth)//Se paso
+                {
+                    currentHealth = maxHealth;
+                }
+                    OnLifeChanged.Invoke(currentHealth);
+            }
+        }
+    }
 }

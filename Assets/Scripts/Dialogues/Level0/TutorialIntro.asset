@@ -22,6 +22,6 @@ MonoBehaviour:
   - "Your main weapon is MUSIC! \n[Use ARROW KEYS to play notes]"
   - 'A note by itself is nothing, but a melody is powerfull!
 
-    [To cast FIREBALL
-    press <-- <--]'
+'
+  - "[To cast FIREBALL press \u2190,\u2190]"
   - You can discover more melodies that cast spells as you go. GOOD LUCK Melidor!

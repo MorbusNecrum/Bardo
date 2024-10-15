@@ -6,12 +6,10 @@ using UnityEngine;
 public class CheckpointController : MonoBehaviour
 {
     private GameObject player;
-    private RespawnController respawnController;
 
     private void Start()
     {
         player = GameObject.Find("Player");
-        respawnController = GetComponent<RespawnController>();
     }
     public CheckpointSO CreateCheckpoint()
     {

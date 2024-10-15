@@ -9,4 +9,9 @@ public class RestartLevelButton : MonoBehaviour
         GameManager.Instance.PauseToggle();
         GameManager.Instance.RestartLevel();
     }
+    public void RestartLevelFromWinOnClicked()
+    {
+        GameManager.Instance.UnfreezeTime();
+        GameManager.Instance.RestartLevel();
+    }
 }

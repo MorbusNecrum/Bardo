@@ -7,10 +7,16 @@ using UnityEngine.Events;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private string levelID;
+    [SerializeField] private string nextLevelID;
     private int enemiesAlive;
     public string LevelID => levelID;
+    public string NextLevelID => nextLevelID;
+
+
     public UnityEvent OnKilledAllEnemies = new UnityEvent();
+
     private AbstractFactory notesAbstractFactory;
+
     private GameObject player;
     private CheckpointController checkpointController;
     [SerializeField] private CheckpointSO lastCheckpoint = null;

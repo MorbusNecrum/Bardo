@@ -19,12 +19,14 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer instrumentSpriteRenderer;
     Animator animator;
     [SerializeField] GameObject instrument;
+    private InstrumentFacade instrumentFacade;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); //Guarda la ref del Rigidbody por codigo
         instrumentSpriteRenderer = instrument.GetComponent<SpriteRenderer>();//Guarda la ref del SpriteRenderer por codigo
+        instrumentFacade = instrument.GetComponent<InstrumentFacade>();
         animator = GetComponent<Animator>();
     }
 
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         InputUpdate();//Input y managment del movimiento
+        NotesUpdate();
     }
 
     private void FixedUpdate()
@@ -100,6 +103,32 @@ public class PlayerController : MonoBehaviour
         else
         {
             instrumentSpriteRenderer.flipY = false;
+        }
+    }
+
+    private void NotesUpdate()
+    {
+        if (!GameManager.Instance.IsGamePaused && !DialogueManager.Instance.IsInDialogue)
+        {
+            if (Input.GetButtonDown("C"))
+            {
+                instrumentFacade.PlayNote("C");
+            }
+
+            if (Input.GetButtonDown("Eb"))
+            {
+                instrumentFacade.PlayNote("Eb");
+            }
+
+            if (Input.GetButtonDown("F"))
+            {
+                instrumentFacade.PlayNote("F");
+            }
+
+            if (Input.GetButtonDown("Bb"))
+            {
+                instrumentFacade.PlayNote("Bb");
+            }
         }
     }
     private void Move()

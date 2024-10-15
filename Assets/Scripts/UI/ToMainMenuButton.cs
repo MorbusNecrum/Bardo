@@ -10,4 +10,9 @@ public class ToMainMenuButton : MonoBehaviour
         GameManager.Instance.PauseToggle();
         SceneChanger.Instance.ChangeScene("MainMenu");
     }
+    public void ToMainMenuFromWinOnClicked()
+    {
+        GameManager.Instance.UnfreezeTime();
+        SceneChanger.Instance.ChangeScene("MainMenu");
+    }
 }

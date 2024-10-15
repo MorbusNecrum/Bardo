@@ -29,36 +29,18 @@ public class NotesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!DialogueManager.Instance.IsInDialogue && !GameManager.Instance.IsGamePaused)
-        {
-            NotesUpdate();
-        }
         TimeCountersUpdate();
-        
     }
-    private void NotesUpdate()
+    
+    public void PlayNote(string note)
     {
-        if (Input.GetButtonDown("C"))
-        {
-            PlayNote("C");
-        }
-
-        if (Input.GetButtonDown("Eb"))
-        {
-            PlayNote("Eb");
-        }
-
-        if (Input.GetButtonDown("F"))
-        {
-            PlayNote("F");
-        }
-
-        if (Input.GetButtonDown("Bb"))
-        {
-            PlayNote("Bb");
-        }
-
-        
+        notesPlayed.Add(note);
+        lastTimePlayedTimer = comboStopTimeBuffer;
+        Debug.Log($"Played note: {note}");
+        AudioManager.Instance.PlayAudioClip(note);
+        GameObject visualNote = notesFactory.CreateObjectInAbstractFactory(note);
+        visualNote.transform.position = noteSpawnPoint.transform.position;
+        SpellsUpdate();
     }
 
     private void TimeCountersUpdate()
@@ -119,14 +101,4 @@ public class NotesController : MonoBehaviour
         
     }
 
-    private void PlayNote(string note)
-    {
-        notesPlayed.Add(note);
-        lastTimePlayedTimer = comboStopTimeBuffer;
-        Debug.Log($"Played note: {note}");
-        AudioManager.Instance.PlayAudioClip(note);
-        GameObject visualNote = notesFactory.CreateObjectInAbstractFactory(note);
-        visualNote.transform.position = noteSpawnPoint.transform.position;
-        SpellsUpdate();
-    }
 }
