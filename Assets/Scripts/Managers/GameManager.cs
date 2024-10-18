@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
     private LevelManager currentLevel;
     private ControllerType controllerInUse = ControllerType.PS4;
     private bool isGamePaused = false;
+
 
     public ControllerType ControllerInUse => controllerInUse;
     public bool IsGamePaused => isGamePaused;
@@ -41,7 +43,6 @@ public class GameManager : MonoBehaviour
             isGamePaused = !isGamePaused;
         }
     }
-
     public void QuitGame()
     {
         // save any game data here
