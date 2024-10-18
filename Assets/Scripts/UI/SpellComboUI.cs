@@ -10,6 +10,8 @@ public class SpellComboUI : MonoBehaviour
 
     private void Start()
     {
+        ProgressionManager.Instance.OnSpellLearned.AddListener(DisplaySpell);//Le pasa el string del ID
+
         foreach (var spell in spellDisplay)
         {
             spellsDisplayDict.Add(spell.name, spell);
@@ -20,5 +22,11 @@ public class SpellComboUI : MonoBehaviour
             spellsDisplayDict.TryGetValue(id, out GameObject spell);
             spell.SetActive(true);
         }
+    }
+
+    private void DisplaySpell(string id)
+    {
+        spellsDisplayDict.TryGetValue(id, out GameObject spell);
+        spell.SetActive(true);
     }
 }

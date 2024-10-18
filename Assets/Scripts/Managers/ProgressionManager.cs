@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProgressionManager : MonoBehaviour
 {
@@ -19,24 +21,20 @@ public class ProgressionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private List<string> knownSpells = new List<string>();
+    [SerializeField] private List<string> knownSpells = new List<string>();
     public List<string> KnownSpells => knownSpells;
-
+    public UnityEvent<string> OnSpellLearned = new UnityEvent<string>();
 
     // Start is called before the first frame update
     void Start()
     {
-        AddSpellKnown("Fireball");
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void AddSpellKnown(string spellID)
     {
         knownSpells.Add(spellID);
+        OnSpellLearned.Invoke(spellID);
     }
+
 }

@@ -60,6 +60,32 @@ MonoBehaviour:
     soundID: Hurt
   - clip: {fileID: 8300000, guid: 65806bc40e532de4f809672f6b258f7d, type: 3}
     soundID: EnemyHurt
+  - clip: {fileID: 8300000, guid: 00c88135fae441542975b22cd8080a76, type: 3}
+    soundID: SlimeJump
+  - clip: {fileID: 8300000, guid: c9cfa2de45fb57346bb890f40e8eb81c, type: 3}
+    soundID: SlimeDied
+  - clip: {fileID: 8300000, guid: b67d61b3fd774154d94faedc462b402c, type: 3}
+    soundID: ZombieChase
+  - clip: {fileID: 8300000, guid: f46088a1d392e9749a5e0fde5a6e49c1, type: 3}
+    soundID: ZombieDied
+  - clip: {fileID: 8300000, guid: 7de8691bad439b549ab70c71d7bb7732, type: 3}
+    soundID: WizardCast
+  - clip: {fileID: 8300000, guid: ed770eef0143d6649b85529dbdd81b02, type: 3}
+    soundID: WizardChase
+  - clip: {fileID: 8300000, guid: b4d74f9a28bef2e4a911d0b64861fb09, type: 3}
+    soundID: WizardDied
+  - clip: {fileID: 8300000, guid: b772e17e8ebe4ae4caf61f44c3d3a878, type: 3}
+    soundID: DoorOpens
+  - clip: {fileID: 8300000, guid: c7957a5313d061e46b56a70e12fd28de, type: 3}
+    soundID: PickUp
+  - clip: {fileID: 8300000, guid: 0bc6396eef6a76c468a4b58e273528b5, type: 3}
+    soundID: Click1
+  - clip: {fileID: 8300000, guid: a280df5de07b7264a823f2119facf1ca, type: 3}
+    soundID: Switch1
+  - clip: {fileID: 8300000, guid: 5a4268655f552a242867b43edcc438b9, type: 3}
+    soundID: PreassurePlateOn
+  - clip: {fileID: 8300000, guid: aff4e2fcb3d2cd94a83d948e349c66a6, type: 3}
+    soundID: PreassurePlateOff
   SoundAudioSource: {fileID: 1921304005376768842}
   _sfxSource: {fileID: 4882266944786825521}
   _bgmSource: {fileID: 4532113542819882903}

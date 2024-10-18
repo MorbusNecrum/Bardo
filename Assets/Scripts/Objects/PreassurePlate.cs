@@ -35,6 +35,7 @@ public class PreassurePlate : MonoBehaviour
                 door.Open();
             }
                 animator.SetBool("IsPressed", true);
+            AudioManager.Instance.PlayAudioClip("PreassurePlateOn");
         }
         collsOnPlate++;
     }
@@ -48,6 +49,7 @@ public class PreassurePlate : MonoBehaviour
                 door.Close();
             }
             animator.SetBool("IsPressed", false);
+            AudioManager.Instance.PlayAudioClip("PreassurePlateOff");
         }
     }
 }

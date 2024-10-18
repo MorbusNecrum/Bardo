@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3969544179858472420}
   - component: {fileID: 442080553896165466}
-  - component: {fileID: 7726320477939427031}
+  - component: {fileID: 6320492170459784392}
   m_Layer: 0
   m_Name: LevelMANAGER
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134265995893430011}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 143.20755, y: -117.086136, z: -0.023057953}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e99c7a65e6916f4dbd5daf09b2780a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelID: 
+  levelID: Level0
+  nextLevelID: Level1
   OnKilledAllEnemies:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7726320477939427031
+  lastCheckpoint: {fileID: 0}
+--- !u!114 &6320492170459784392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,8 +60,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2134265995893430011}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a696a64649071c418b158a5625fd3fc, type: 3}
+  m_Script: {fileID: 11500000, guid: eab28049483769f479257441bc9e44be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: d8fa94a6d268b4841a6cb726bcb7e86e, type: 2}
-  metaButton: {fileID: 0}
