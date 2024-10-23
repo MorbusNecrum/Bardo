@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velPower;// que tan empinada es la curva de la asintoica.
     [SerializeField] private float friction;
     [SerializeField] private float forceLimit; //Lo maximo de fuerza que se puede aplicar en un frame.
+    private Vector2 inputDir;
     private Vector2 direction;
     private Vector2 lastDirection = new Vector2(1, 0);
     private Vector2 targetSpeed;
@@ -66,8 +67,15 @@ public class PlayerController : MonoBehaviour
         {
             direction.x = Input.GetAxis("Horizontal");
             direction.y = Input.GetAxis("Vertical");
+
+            inputDir.x = Input.GetAxis("Horizontal");
+            inputDir.y = Input.GetAxis("Vertical");
         }
         direction.Normalize();
+        if(inputDir.magnitude > 1) 
+        {
+            inputDir.Normalize();
+        }
         if(direction != Vector2.zero)//Si no se movio
         {
             lastDirection = direction;
@@ -134,7 +142,10 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         //Calcula la velocidad deseada del player
-        targetSpeed = direction * movementSpeed;
+        //targetSpeed = direction * movementSpeed;
+
+        //OPCION PARA CONTROL-------------------
+        targetSpeed = inputDir * movementSpeed;
 
         //Calcula la diferencia entre su vel actual y a la q quiere llegar
         Vector2 speedDif = targetSpeed - rb.velocity;
